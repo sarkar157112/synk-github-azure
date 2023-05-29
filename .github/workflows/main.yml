@@ -13,11 +13,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
     - name: Push to Azure DevOps
       run: |
-        git config --global user.name "sarkar"
-        git config --global user.email "sark@gmail.com"
-        git remote add azure https://baban0315@dev.azure.com/baban0315/github-sync/_git/github-sync
+        git config --global user.name "sark"
+        git config --global user.email "sakr@gmail.com"
+        git remote add azure git@ssh.dev.azure.com:v3/baban0315/github-sync/github-sync
         git push azure master
-      env:
-        AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
