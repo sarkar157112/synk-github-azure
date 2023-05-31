@@ -21,4 +21,6 @@ jobs:
         git config --global user.name "sark"
         git config --global user.email "sakr@gmail.com"
         git remote add azure git@ssh.dev.azure.com:v3/baban0315/github-sync/github-sync
-        git push --force azure ${GITHUB_REF#refs/heads/}
+        git pull --rebase azure ${GITHUB_REF#refs/heads/}
+        git push azure ${GITHUB_REF#refs/heads/}
+        echo "Push done."
